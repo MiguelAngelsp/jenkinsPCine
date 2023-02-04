@@ -3,7 +3,7 @@
 job('Job-pCine') {
     description('Job Padre para crear una tarea Hija que despliegue la App Cine')
     scm {
-        git('https://github.com/MiguelAngelsp/jenkinsPCine.git', 'main'){ 
+        git('https://github.com/MiguelAngelsp/jenkinsPCine.git', 'master'){ 
             node -> 
                 node / gitConfigName('MiguelAngelsp')
                 node / gitConfigEmail('miguel.correopers@gmail.com')
