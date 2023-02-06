@@ -1,9 +1,4 @@
 FROM nginx
-#Copiamos el directorio app-next al directorio de publicacion dee nginx
-COPY ../app-next /usr/share/nginx/html
-
-# WORKDIR /Proyectos/pCine/build
-# RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-# COPY conf/nginx.conf /etc/nginx
+# copiando el directorio appdfas_next al d.publicacion de ngnix
+# COPY ../app_next /usr/share/nginx/html
 RUN /etc/init.d/nginx start
