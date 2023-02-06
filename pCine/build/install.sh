@@ -1,4 +1,4 @@
-echo "Desplegando la app rde gdfaspTienda"
+echo "Desplegando la app de gstión de un Cine"
 
-docker-compose -f docker-compose.yml build
-docker-compose -f docker-compose.yml up -d
+echo "docker-compose -f docker-compose.yml build"
+echo "docker-compose -f docker-compose.yml up -d"
