@@ -1,0 +1,9 @@
+FROM nginx
+#Copiamos el directorio app-next al directorio de publicacion dee nginx
+COPY ../app-next /usr/share/nginx/html
+
+# WORKDIR /Proyectos/pCine/build
+# RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+# COPY conf/nginx.conf /etc/nginx
+RUN /etc/init.d/nginx start
