@@ -5,7 +5,7 @@ services:
       context: ${DIR_DFILES}
       dockerfile: ./dockerfile
     env_file: 
-      - ./.env
+      - ./pCine/build/.env
     ports: 
       - ${PUERTO}:8080
     # volumes: 
