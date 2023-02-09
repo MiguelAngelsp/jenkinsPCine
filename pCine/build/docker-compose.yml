@@ -7,6 +7,6 @@ services:
     env_file: 
       - ./.env
     ports: 
-      - ${PUERTO}:80
+      - ${PUERTO}:8080
     # volumes: 
     #   - ../app_next:/usr/share/nginx/html
