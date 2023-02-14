@@ -1,5 +1,4 @@
-#FROM ub-base
-FROM ubuntu
+FROM ub-base
 
 ARG USUARIO
 ARG PASSWD

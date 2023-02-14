@@ -39,7 +39,7 @@ config_nest(){
 
 main(){
     
-    #config_git
+    config_git
     config_nest
     tail -f /dev/null 
 }
