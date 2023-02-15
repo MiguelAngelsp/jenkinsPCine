@@ -1,53 +1,41 @@
 version: "3.8"
 services:
-  dbapicine:
-    container_name: bdapicine
+  dbincidenciasnest:
+    container_name: bdIncidenciasNest
     image: postgres:14.3
     restart: always
     ports:
       - ${DB_PORT}:5432
     environment:
-      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
+      POSTGRES_USER: ${DB_USERNAME}
     volumes:
       - ./postgres:/var/lib/postgresql/data
-    networks: 
-      netapache:
-          ipv4_address: 172.210.10.3
   
-  nestapicine:
-    container_name: apicine
-    image: ubase-apicine
-    restart: always
+  weblibrerianest:
+    container_name: apiIncidenciasNest
+    image: apinestincidencias
     build:
-      context: ${DIR_DFILES}/apicine2022/
-      dockerfile: ./Dockerfile
+      context: ./
+      dockerfile: ./dockerfile
       args:
         - USUARIO=${USUARIO}
         - PASSWD=${PASSWD}
         - PROYECTO=${PROYECTO}
         - DB_HOST=${DB_HOST}
         - DB_NAME=${DB_NAME}
-        - DB_USER=${DB_USER}
-        - DB_PASS=${DB_PASS}
+        - DB_USERNAME=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
         - DB_PORT=${DB_PORT}
-        - GITHUB=${GITHUB}
-        - WWW_PORT=${WWW_PORT}
+        - URL_Repo_GIT=${URL_Repo_GIT}
+        - NEST_PORT=${NEST_PORT}
     env_file:
        - ./.env
     ports:
-      - ${WWW_PORT}:3000
+      - ${NEST_PORT}:3000
     volumes:
       - ./web:/var/www/html
       - ./logs:/var/logs
-    networks: 
-      netapache:
-          ipv4_address: 172.210.10.2
-
-networks: 
-  netapache:
-      ipam: 
-          driver: default
-          config: 
-              - subnet: 172.210.10.0/24
+    # depends_on:
+    #   - db  
