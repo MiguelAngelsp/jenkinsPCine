@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-bash /root/start.sh
+# bash /root/start.sh
 
 echo "$USUARIO, $PROYECTO, $DB_NAME" > /home/datos_entry.txt
 

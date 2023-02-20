@@ -17,8 +17,8 @@ services:
     container_name: apiIncidenciasNest
     image: apinestincidencias
     build:
-      context: ./
-      dockerfile: ./dockerfile
+      context: ${DIR_DFILES}
+      dockerfile: ./Dockerfile
       args:
         - USUARIO=${USUARIO}
         - PASSWD=${PASSWD}
@@ -30,6 +30,7 @@ services:
         - DB_PORT=${DB_PORT}
         - URL_Repo_GIT=${URL_Repo_GIT}
         - NEST_PORT=${NEST_PORT}
+        - TZ=${TZ}
     env_file:
        - ./.env
     ports:
