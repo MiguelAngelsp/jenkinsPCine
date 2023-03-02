@@ -48,7 +48,20 @@ ENV URL_Repo_GIT=${URL_Repo_GIT}
 ENV NEST_PORT=${NEST_PORT}
 ENV TZ=${TZ}
 
+WORKDIR /app
+COPY ./api_nest/package.json .
+COPY ./api_nest/yarn.lock .
+RUN yarn install --force
 
+COPY ./api_nest .
+RUN yarn build
+
+WORKDIR /app/dist
+
+EXPOSE 3005
+
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["node", "main.js"]
    
 
 # RUN dos2unix /root/start.sh 
@@ -66,18 +79,18 @@ ENV TZ=${TZ}
 #     && nvm use default
 
 # COPY ./start.sh /root
-COPY ./docker/apicine2022/start-nest.sh /root
-COPY ./conf/nginx.conf /root
+# COPY ./docker/apicine2022/start-nest.sh /root
+# COPY ./conf/nginx.conf /root
 
-COPY ./conf/nodesource.list /etc/apt/sources.list.d/
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - 
-RUN apt-get update && apt-get install -y nodejs
-# RUN apt-get update && apt-get install -y -q --no-install-recommends \
-#     nodejs
+# COPY ./conf/nodesource.list /etc/apt/sources.list.d/
+# RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - 
+# RUN apt-get update && apt-get install -y nodejs
+# # RUN apt-get update && apt-get install -y -q --no-install-recommends \
+# #     nodejs
 
-COPY ./docker/apicine2022/start-nest.sh /root
-RUN chmod +x /root/start-nest.sh
-RUN dos2unix /root/start-nest.sh 
+# COPY ./docker/apicine2022/start-nest.sh /root
+# RUN chmod +x /root/start-nest.sh
+# RUN dos2unix /root/start-nest.sh 
 
-EXPOSE 80
-ENTRYPOINT [ "/root/start-nest.sh" ]
+# EXPOSE 80
+# ENTRYPOINT [ "/root/start-nest.sh" ]

@@ -10,8 +10,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USERNAME}
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
+    # volumes:
+    #   - ./postgres:/var/lib/postgresql/data
   
   weblibrerianest:
     container_name: apiIncidenciasNest
@@ -35,8 +35,8 @@ services:
        - ./.env
     ports:
       - ${NEST_PORT}:3000
-    volumes:
-      - ./web:/var/www/html
-      - ./logs:/var/logs
+    # volumes:
+    #   - ./web:/var/www/html
+    #   - ./logs:/var/logs
     # depends_on:
     #   - db  
