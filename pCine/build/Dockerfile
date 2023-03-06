@@ -24,13 +24,17 @@ RUN yarn install --force
 
 COPY ./api_nest .
 RUN yarn build
+RUN yarn config set network-timeout 60000
+RUN yarn install --production=true
 
-WORKDIR /app/dist
-
-EXPOSE 3005
+FROM nginx:1.19.0-alpine as deploy
+COPY --frominstall /app/dist/main.js /usr/share/nginx/html/index.js
+COPY --frominstall /app/dist/node_modules /usr/share/nginx/html/node_modules
+EXPOSE 80 
+CMD ["nginx", "-g", "daemon off"]
 
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
-ENTRYPOINT ["node", "main.js"]
+# ENTRYPOINT ["node", "main.js"]
 
 #FROM ub-base
 # FROM ubuntu
