@@ -5,11 +5,11 @@ services:
   psql-db:
     image: postgres:12.1-alpine
     ports:
-      - ${POSTGRES_PORT_EXTERNAL}:5432
+      - 5432:5432
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=miguel
+      - POSTGRES_PASSWORD=usuario
+      - POSTGRES_DB=bdapicine
     container_name: cine-postgreSQL
     volumes:
       - psql-db-data:/var/lib/postgresql/data
