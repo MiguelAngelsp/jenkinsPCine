@@ -29,7 +29,7 @@ FROM nginx:1.19.0-alpine as deploy
 COPY --frominstall /app/dist/main.js /usr/share/nginx/html/index.js
 COPY --frominstall /app/dist/node_modules /usr/share/nginx/html/node_modules
 EXPOSE 80 
-CMD ["nginx", "-g", "daemon off"]
+CMD ["nginx", "-g", "daemon off;"]
 
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
 # ENTRYPOINT ["node", "main.js"]
