@@ -20,7 +20,8 @@ import { SeedModule } from './modulos/seed/seed.module';
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     autoLoadEntities: true,
-    synchronize: !!process.env.DB_SYNC
+    synchronize: true
+    // synchronize: !!process.env.DB_SYNC
   }), UsuariosModule, PeliculasModule, ValoracionesModule, GenerosModule, CestaModule, AuthModule, SeedModule
   ],
   controllers: [AppController],
